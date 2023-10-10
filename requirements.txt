@@ -1,3 +1,4 @@
+git+https://github.com/weaviate/weaviate-python-client.git@v3.99.0a3#egg=weaviate-client[GRPC]
 Flask==2.0.2
-weaviate_client==3.3.3
 Werkzeug==2.0.1
+pytest==7.4.2

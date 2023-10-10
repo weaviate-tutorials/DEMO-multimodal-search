@@ -1,0 +1,4 @@
+static/uploads/**
+!static/uploads/.gitkeep
+.idea
+__pycache__/**

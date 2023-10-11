@@ -1,27 +1,35 @@
-'''This file implements functions that fetch results from weaviate for the query 
-entered by user. There are two functions, testImage and testText for image query and text query
-respectively.'''
+"""Pytest tests to validate the functionality without going through frontend"""
+import logging
 
-import pickle
-import weaviate
-import uuid
-import datetime
-import base64, json, os
+from pathlib import Path
 
-client = weaviate.Client("http://localhost:8080")
-print("Client created (This is test.py)")
+import pytest
+from util import search_by_text, search_by_image
 
-def testText(nearText):
-    # I am fetching top 3 results for the user, we can change this by making small 
-    # altercations in this function and in upload.html file
-    # You can also analyse the result in a better way by taking a look at res.
-    # Try printing res in the terminal and see what all contents it has.
-    res = client.query.get("ClipExample", ["text", "_additional {certainty} "]).with_near_text(nearText).do()
-    return (res['data']['Get']['ClipExample'][0]['text']),(res['data']['Get']['ClipExample'][1]['text']),(res['data']['Get']['ClipExample'][2]['text'])
+LOGGER = logging.getLogger(__name__)
 
 
-def testImage(nearImage):
-    # I am fetching top 3 results for the user, we can change this by making small 
-    # altercations in this function and in upload.html file
-    imres = client.query.get("ClipExample", ["text", "_additional {certainty} "]).with_near_image(nearImage).do()
-    return (imres['data']['Get']['ClipExample'][0]['text']),(imres['data']['Get']['ClipExample'][1]['text']),(imres['data']['Get']['ClipExample'][2]['text'])
+@pytest.mark.parametrize('input_text', ['A little puppy',
+                                        'a sparse market',
+                                        'a market with many people',  # This is giving same image as the one above it
+                                        'many people',
+                                        'person playing',
+                                        'stars in the sky',
+                                        'king of the jungle',
+                                        'A loyal animal',  # This gives lion's image instead of dog
+                                        'scooby the pet',
+                                        'graduating students',
+                                        'students chilling in college',
+                                        'children in classroom',
+                                        'couple marrying'])
+def test_search_by_text(input_text):
+    result = search_by_text(input_text)
+    LOGGER.info(f"Input text: {input_text}, Result: {result}")
+    assert len(result) == 3
+
+
+@pytest.mark.parametrize('input_image', Path("static/Test/").glob("*.jfif"))
+def test_search_by_image(input_image):
+    result = search_by_image(input_image)
+    LOGGER.info(f"Input image: {input_image}, Result: {result}")
+    assert len(result) == 3

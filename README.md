@@ -16,14 +16,32 @@ This example has a flask-based interface where a user can give an image or text 
 To run this example, you need to have docker installed and some knowledge of using docker-compose and basic docker commands will be helpful.<be>
 
 ## Setup instructions
-Spin up your weaviate instance using the docker file in this directory by using the command "docker-compose up -d". <br>
-The "docker-compose.yml" file has been made using the configurations given on the above mentioned web page.<br> 
-To run the Python codes, use the requirements.txt file to setup your environment.<br>
+Note: We recommend you create a new virtual environment for this.
+   ```bash
+   python -m venv .venv
+   source .venv/bin/activate
+   ```
 
-After spinning up weaviate and getting the environment ready, follow the below steps:<br>
-1. To add data to weaviate, run "python .\data.py" (command for windows) <br>
-2. To test if everything is working, run "python .\terminal_test.py" <br>
-3. Now, run "python .\upload.py" to start the flask server and use the frontend.
+1. Install the Python packages.
+   ```bash
+    pip install -r requirements.txt
+    ```
+2. Run the docker file to spin up your weaviate instance
+    ```bash
+    docker compose up
+    ```
+3. Create the class definition and add data to weaviate
+    ```bash
+    python data.py
+    ```
+4. Test if everything is working
+    ```bash
+    python test.py
+    ```
+5. Start the flask server and use the frontend.
+    ```bash
+    python upload.py
+    ```
 
 ## Usage instructions
 

@@ -71,5 +71,5 @@ Have a great time with weaviate !!<be>
 
 [Forest image](static/Images/forest2.jfif) from [Unsplash](https://unsplash.com/photos/green-pine-trees-d6kSvT2xZQo)
 
-[Lion image](static/Images/lion1.jfif) from [iStock](https://www.istockphoto.com/photo/lion-gm1005736050-271498835?utm_campaign=adp_photos_sponsored&utm_content=https%3A%2F%2Funsplash.com%2Fphotos%2Fbrown-lion-on-green-grass-field-UxHol6SwLyM&utm_medium=affiliate&utm_source=unsplash&utm_term=wildlife%3A%3A%3A)
+
 

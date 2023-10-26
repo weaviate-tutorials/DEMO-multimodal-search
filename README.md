@@ -67,4 +67,9 @@ Experimenting with the type of input and observing the different types of result
 Have a great time with weaviate !!<be>
 
 ## Dataset license
-(TO DO) 
+[Universe image](static/Images/universe1.jfif) from [Unsplash](https://unsplash.com/photos/two-stars-in-the-middle-of-a-black-sky-fsH1KjbdjE8)
+
+[Forest image](static/Images/forest2.jfif) from [Unsplash](https://unsplash.com/photos/green-pine-trees-d6kSvT2xZQo)
+
+
+

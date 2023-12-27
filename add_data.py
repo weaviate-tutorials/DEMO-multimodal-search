@@ -7,7 +7,7 @@ import base64
 from pathlib import Path
 
 COLLECTION_NAME = "MultiModalCollection"
-imgdir = Path("static/Images")
+imgdir = Path("data/images")
 
 
 def connect() -> WeaviateClient:
@@ -35,9 +35,9 @@ def define_collection(client: WeaviateClient) -> bool:
             wvc.Property(
                 name="filename",
                 data_type=wvc.config.DataType.TEXT,
-                skip_vectorization=True  # Not vectorizing for demonstrative purposes
-            )
-        ]
+                skip_vectorization=True,  # Not vectorizing for demonstrative purposes
+            ),
+        ],
     )
     return True
 
@@ -48,13 +48,9 @@ def import_data(client: WeaviateClient) -> BatchObjectReturn:
     data_objs = list()
     for f in imgdir.glob("*.jpg"):
         b64img = base64.b64encode(f.read_bytes()).decode()
-        data_props = {
-            "image": b64img,
-            "filename": f.name
-        }
+        data_props = {"image": b64img, "filename": f.name}
         data_obj = wvc.data.DataObject(
-            properties=data_props,
-            uuid=generate_uuid5(f.name)
+            properties=data_props, uuid=generate_uuid5(f.name)
         )
         data_objs.append(data_obj)
 
@@ -75,11 +71,7 @@ def demo_query(client: WeaviateClient):
     response = mm_coll.aggregate.over_all(total_count=True)
     print(f"Object count: {response.total_count}")
 
-    for q in [
-        "lions",
-        "a big crowd",
-        "happy students"
-    ]:
+    for q in ["lions", "a big crowd", "happy students"]:
         response = mm_coll.query.near_text(q, limit=3)
         print(f"\n{'*'*10} \t Query: \t {'*'*10}\n")
         print(f"\t\t {q} \n")

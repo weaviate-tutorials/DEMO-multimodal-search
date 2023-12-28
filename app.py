@@ -56,7 +56,7 @@ if search_text != "" or img is not None:
             query=search_text,
             return_properties=[
                 "filename",
-                # "image"
+                # "image"  # TODO - return blob when implemented to client
             ],
             return_metadata=wvc.query.MetadataQuery(distance=True),
             limit=6,
@@ -70,14 +70,18 @@ if search_text != "" or img is not None:
                 st.divider()
         with columns[i % 3]:
             st.write(r.properties["filename"])
-            # st.write(type(base64.b64decode(r.properties["image"])))
+            # st.image(base64.b64decode(r.properties["image"]))  # Show blob when implemented to client
 
             # Temporary solution to show image
             imgpath = Path("data/images") / r.properties["filename"]
             img = imgpath.read_bytes()
             st.image(img)
+
+            # Show distance
             st.write(f"Distance: {r.metadata.distance:.3f}")
 
+
+# Hide the Streamlit menu/popup - from https://discuss.streamlit.io/t/removing-the-deploy-button/53621/2
 st.markdown("""
     <style>
         .reportview-container {

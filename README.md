@@ -31,9 +31,19 @@ To run this example, you need:
 
 ## Usage instructions
 
-Input a search query into the text box, or upload an image. This will return the top 6 results from the Weaviate instance. The results are sorted by the cosine similarity between the query and the vector representation of the object.
+Input a search query into the text box, or upload an image.
 
-The model used is multi-lingual! That means it can understand queries in multiple languages. Try a search with an image, and then try inputting a description for that image in different languages!
+![mm_demo_screen](./mm_demo_screen.png)
+
+This will return the top 6 results from the Weaviate instance. The results are sorted by the cosine similarity between the query and the vector representation of the object.
+
+Example search results for an image query:
+![mm_demo_by_img](./mm_demo_by_img.png)
+
+Example search results for a text query:
+![mm_demo_by_text](./mm_demo_by_txt.png)
+
+Note - The model used is multi-lingual! That means it can understand queries in multiple languages. Try a search with an image, and then try inputting a description for that image in different languages!
 
 ## Dataset license
 
